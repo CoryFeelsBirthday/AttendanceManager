@@ -11,13 +11,11 @@ Attendance Manager web application for Nashville School systems
 Here is a link for the [NAZA data system model](https://dl.dropboxusercontent.com/u/2340553/NAZA%20Program%20Data%20System%20Model%20Summary%20v4.doc).
 More specific requirements of the application are listed below:
 
-*	Ability to interface with an SMS application.
 *	Security and permission levels, with password reset generator
 *	Linking students to their MNPS record via student ID and directory data
 *	Creating attendance rosters for each site based on enrolled students.
 *	Capacity to track each student daily by presence, absence or excused absence, along with reasons for excused absences and participation in enhancements.
 *	Incorporating the internal data quality integrity checks, with associated reports to do trouble-shooting.
-*	Running user-friendly calculations of average daily attendance at several levels.
 *	Reflect responsive design that covers tablets, phones, kindle fires, etc.
 *	Incorporate additional features as they become necessary
 *	Be flexible enough to adapt to future changes to SMS, while maintaining compatibility with MNPS’ infrastructure
