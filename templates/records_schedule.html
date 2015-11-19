@@ -1,0 +1,20 @@
+{% extends "records.html" %}
+{% load records_extras %}
+{% block list_header%}
+        <th class="col-sm-2">Schedule</th>
+        <th class="col-sm-3">Teacher</th>
+        <th class="col-sm-3">Meeting Day</th>
+        <th class="col-sm-2">Canceled date</th>
+{% endblock %}
+{% block list_content %}
+        <th class="col-sm-2">
+          <a href="{% url 'enrollment_view'  zone_name|url_quote program_name|url_quote item.session.name|url_quote %}">{{ item.session.name }}</a>
+        </th>
+        <th class="col-sm-3">{{item.teacher.first_name}} {{item.teacher.last_name}}</th>
+        <th class="col-sm-3">
+                {% for x in item.meeting_day%}
+                {{x}}
+                {% endfor %}
+        </th>
+        <th class="col-sm-2"><input type="button" onclick="location.href='{% url 'canceled_date_view' zone_name|url_quote program_name|url_quote item.session.name|url_quote %}';" class="btn btn-primary btn-xs canceled-date" value = "Canceled Date"></th>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container-fluid">
+  <h4><strong>Add User Permission</strong></h4>
+</div>
+<div class="container-fluid">
+  {% if success %}
+  <div class='alert alert-success fade in' id='message'>
+  <button class='close' data-dismiss='alert' aria-label='close'>&times;</button>
+  <strong>Success!</strong> Permission Saved.</div>
+  {% endif %}
+</div>
+<div class="container-fluid">
+  {% crispy add_user_perm_form %}
+</div>
+{% endblock %}
+{% block extrajs %}
+<script>
+  function changeUserEvent(){
+      $('#id_user').change(function(){
+           $.ajax({
+                type: "GET",
+                url: "{% url 'get_user_perm_view' %}", //
+                dataType: "json",
+                data:$("#id_user").serialize(),
+                success: function(data){
+                    $('#user_perm_form').html(data['form_html']);
+                }
+           }).done(function(){
+                $('select').select2({'width':'100%'});
+                changeUserEvent()
+           });
+      });
+  }
+  $(document).ready(function(){
+      changeUserEvent()
+      $('select').select2({'width':'100%'});
+  })
+</script>
+{% endblock %}

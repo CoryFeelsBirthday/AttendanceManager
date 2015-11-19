@@ -1,0 +1,23 @@
+{% extends "records.html" %}
+{% load records_extras %}
+{% block before_table %}
+<div class="container-fluid">
+        <input type="button" class="btn btn-primary btn-block" onclick="location.href='{% url 'attendance_view'  zone_name|url_quote program_name|url_quote session_name|url_quote today %}';" value="Take Attendance" />
+</div>
+{% endblock %}
+
+
+{% block list_header%}
+        <th style="display: none">Canceled Date</th>
+        <th class="col-sm-3">Student</th>
+        <th class="col-sm-1">ID</th>
+        <th class="col-sm-3">Start Date</th>
+        <th class="col-sm-3">End Date</th>
+{% endblock %}
+{% block list_content %}
+        <th style="display: none"><a href="{% url 'enrollment_view'  zone_name|url_quote program_name|url_quote session_name|url_quote %}{{item.student.id}}/enrollment/"></a></th>
+        <th class="col-sm-3">{{item.student.first_name}} {{item.student.last_name}}</th>
+        <th class="col-sm-1">{{item.student.local_id}}</th>
+        <th class="col-sm-3">{{item.start_date}}</th>
+        <th class="col-sm-3">{{item.end_date}}</th>
+{% endblock %}

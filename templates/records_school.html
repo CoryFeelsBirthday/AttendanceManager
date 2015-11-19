@@ -1,0 +1,15 @@
+{% extends "records.html" %}
+{% load records_extras %}
+{% block list_header%}
+        <th class="col-sm-2">Name</th>
+        <th class="col-sm-2">Code</th>
+        <th class="col-sm-2">District ID</th>
+        <th class="col-sm-4">Address</th>
+{% endblock %}
+{% block list_content %}
+        <th style="display: none"><a href="{% url 'school_view' %}{{item.id}}/school/"></a></th>
+        <th class="col-sm-2">{{ item.name }}</th>
+        <th class="col-sm-2">{{ item.school_code }}</th>
+        <th class="col-sm-2">{{ item.district_id }}</th>
+        <th class="col-sm-4">{{ item.address }}</th>
+{% endblock %}

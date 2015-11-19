@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" style="background-color: #eee;">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NAZA Attendance Manager</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
+
+  <!--Bootstrap select filter css-->
+  <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
+  <!--Bootstrap select filter js-->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+  <style>
+    .nav-link-text:hover{
+        cursor:pointer;
+        color:black;
+    }
+    .link-text{
+        color: blue;
+    }
+    .link-text:hover{
+        cursor:pointer;
+    }
+    html {
+        height: 100%;
+    }
+    body{
+        background-color: #eee;
+        padding-top:20px;
+        max-width:790px;
+        margin:auto;
+    }
+
+    body.modal-open {
+        overflow: inherit;
+        padding-right: 0px !important;
+    }
+
+    #content {
+        background-color:white;
+        padding-top:25px;
+        padding-bottom:25px;
+    }
+
+  </style>
+  {% block extra_header %}{% endblock %}
+</head>
+<body>
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapsible-nav">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{% url 'site_url' %}"> Attendance Manager </a>
+      </div>
+      <div class="collapse navbar-collapse" id="collapsible-nav">
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Records <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="{% url 'zone_view' %}">Attendance</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="{% url 'session_view' %}">Session</a></li>
+              <li><a href="{% url 'school_view' %}">School</a></li>
+              <li><a href="{% url 'student_view' %}">Student</a></li>
+              <li><a href="{% url 'partner_view' %}">Partner</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="{% url 'add_user_view' %}">Add User</a></li>
+              <li><a href="{% url 'add_user_perm_view' %}">Edit Permission</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Profile<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="{% url 'profile_view' %}">Profile</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="{% url 'password_change' %}">Change Password</a></li>
+            </ul>
+          </li>
+          <li><p id='log_out' class="nav navbar-text nav-link-text"><span class="glyphicon glyphicon-log-in"></span> Logout</p></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div id="log_out_modal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 id='log_out_modal_title' class="modal-title">Confirm</h4>
+      </div>
+      <div id='log_out_modal_body' class="modal-body">
+        <p>Are you sure you want to log out?</p>
+      </div>
+      <div class="modal-footer">
+        <a id="confirm" class="btn btn-primary" href="{% url 'django.contrib.auth.views.logout' %}">Confirm</a>
+        <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+  </div>
+  <script>
+    $(document).ready(function(){
+        $('#log_out').click(function(){
+            $('#log_out_modal').modal('show');
+        })
+      })
+  </script>
+  <div id='content' class="container-fluid">
+  {% block content %}{% endblock %}
+  </div>
+
+  {% block extrajs %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,11 @@
+{% extends "records.html" %}
+{% load records_extras %}
+{% block list_header%}
+        <th class="col-sm-2">Name</th>
+        <th class="col-sm-8">Description</th>
+{% endblock %}
+{% block list_content %}
+        <th style="display: none"><a href="{% url 'partner_view' %}{{item.id}}/partner/"></a></th>
+        <th class="col-sm-2">{{ item.name }}</th>
+        <th class="col-sm-8">{{ item.description }}</th>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "records.html" %}
+{% load records_extras %}
+
+{% block list_header%}
+        <th style="display: none">Student ID</th>
+        <th class="col-sm-5">Date</th>
+        <th class="col-sm-5">Comment</th>
+{% endblock %}
+{% block list_content %}
+        <th style="display: none"><a href="{% url 'canceled_date_view'  zone_name|url_quote program_name|url_quote session_name|url_quote %}{{item.date|date:'Y-n-j'}}/canceled_date/"></a></th>
+        <th class="col-sm-5">{{item.date}}</th>
+       <th class="col-sm-5">{{item.comment}}</th>
+{% endblock %}

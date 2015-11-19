@@ -1,0 +1,12 @@
+{% extends "records.html" %}
+{% load records_extras %}
+{% block list_header%}
+        <th class="col-sm-10">Program</th>
+{% endblock %}
+{% block list_content %}
+        <th class="col-sm-10">
+          <a href="{% url 'schedule_view'  zone_name|url_quote item.name|url_quote %}">{{ item.name }}</a>
+        </th>
+{% endblock %}
+
+

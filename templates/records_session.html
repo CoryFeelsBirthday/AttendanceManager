@@ -1,0 +1,15 @@
+{% extends "records.html" %}
+{% load records_extras %}
+{% block list_header%}
+        <th class="col-sm-2">Session</th>
+        <th class="col-sm-2">Start Date</th>
+        <th class="col-sm-2">End Date</th>
+        <th class="col-sm-4">Description</th>
+{% endblock %}
+{% block list_content %}
+        <th style="display: none"><a href="{% url 'session_view' %}{{item.id}}/session/"></a></th>
+        <th class="col-sm-2">{{ item.name }}</th>
+        <th class="col-sm-2">{{ item.start_date }}</th>
+        <th class="col-sm-2">{{ item.end_date }}</th>
+        <th class="col-sm-4">{{ item.description }}</th>
+{% endblock %}
